@@ -1,32 +1,15 @@
-version: 2
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2 
+
 jobs:
   build:
-    working_directory: ~/repo
-
     docker:
-    - image: circleci/ruby:2.4
-
+      - image: circleci/ruby:2.6.3-stretch-node
+    executor: ruby/default
     steps:
-    - checkout
-
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "Gemfile.lock" }}
-        # fallback to using the latest cache if no exact match is found
-        - v1-dependencies-
-
-    - run:
-        name: install dependencies
-        command: |
-          bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-    - save_cache:
-        paths:
-          - ./vendor/bundle
-        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-    - run:
-        name: Run tests
-        command: |
-          bundle exec rake
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
