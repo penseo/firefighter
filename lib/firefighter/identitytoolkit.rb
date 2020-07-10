@@ -3,11 +3,10 @@ module Firefighter
     include Web
 
     def self.from_env
-      config = {
+      new(
         api_key: ENV['FIREBASE_WEB_API_KEY'],
         service_account_email: ENV['FIREBASE_SERVICE_ACCOUNT_EMAIL'],
-      }
-      new(config)
+      )
     end
 
     def initialize(api_key:, service_account_email:)

@@ -3,11 +3,10 @@ module Firefighter
     include Web
 
     def self.from_env
-      config = {
+      new(
         db_name: ENV['FIREBASE_WEB_DB_NAME'],
         db_secret: ENV['FIREBASE_WEB_DB_SECRET']
-      }
-      new(config)
+      )
     end
 
     def initialize(db_name:, db_secret:)
