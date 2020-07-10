@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.1.0
+
+- compatibility with ruby 2.7.1
+
 ### 1.0.0
 
 - adds `Firefighter::RealtimeDatabase#listen` (experimental)
