@@ -6,11 +6,10 @@ module Firefighter
     include Web
 
     def self.from_env
-      config = {
+      new(
         service_account_email: ENV['FIREBASE_SERVICE_ACCOUNT_EMAIL'],
         service_account_private_key: ENV['FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY'],
-      }
-      new(config)
+      )
     end
 
     def initialize(service_account_email:, service_account_private_key:, algorithm: 'RS256')
