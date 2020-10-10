@@ -2,7 +2,7 @@
 
 Talk to Firebase API from Ruby:
 
-- identity: signup, account_info, accounts_download
+- identity: signup, account_info, accounts_download, verify_password
 - realtime: read, listen, write, add, delete data
 - tokens: generate JWT tokens for token-auth
 
@@ -36,6 +36,8 @@ account = identitytoolkit.signup('test@test.de', 'totalgeheimespasswort')
 account = identitytoolkit.account_info(account['idToken'])
 
 accounts = identitytoolkit.download_accounts
+
+account = identitytoolkit.verify_password('test@test.de', 'totalgeheimespasswort')
 ```
 
 ```ruby
