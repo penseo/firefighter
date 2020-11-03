@@ -14,6 +14,16 @@ module Firefighter
       @service_account_email = service_account_email
     end
 
+    def verify_password(email, password)
+      url = endpoint('verifyPassword')
+      data = {
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }
+      call(:post, url, data)
+    end
+
     def signup(email, password)
       url = endpoint('signupNewUser')
       data = {
