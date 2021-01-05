@@ -5,13 +5,21 @@ module Firefighter
     def self.from_env
       new(
         db_name: ENV['FIREBASE_WEB_DB_NAME'],
-        db_secret: ENV['FIREBASE_WEB_DB_SECRET']
+        db_secret: ENV['FIREBASE_WEB_DB_SECRET'],
+        db_host: ENV['FIREBASE_WEB_DB_HOST'] || DEFAULT_DB_HOST,
       )
     end
 
-    def initialize(db_name:, db_secret:)
+    DB_HOSTS = {
+      'us-central1' => 'firebaseio.com',
+      'europe-west1' => 'europe-west1.firebasedatabase.app',
+    }
+    DEFAULT_DB_HOST = DB_HOSTS['us-central1']
+
+    def initialize(db_name:, db_secret:, db_host: DEFAULT_DB_HOST)
       @db_name = db_name
       @db_secret = db_secret
+      @db_host = db_host
     end
 
     def listen(path)
@@ -45,7 +53,7 @@ module Firefighter
     private
 
     def endpoint(path)
-      "https://#{@db_name}.firebaseio.com/#{path}.json?auth=#{@db_secret}"
+      "https://#{@db_name}.#{@db_host}/#{path}.json?auth=#{@db_secret}"
     end
   end
 end
