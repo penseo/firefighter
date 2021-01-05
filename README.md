@@ -45,6 +45,8 @@ account = identitytoolkit.verify_password('test@test.de', 'totalgeheimespasswort
 # from_env uses environment variables:
 # - FIREBASE_WEB_DB_NAME
 # - FIREBASE_WEB_DB_SECRET
+# - FIREBASE_WEB_DB_HOST (defaults to host for us-central1)
+
 realtime_database = Firefighter::RealtimeDatabase.from_env
 
 realtime_database.write("some-path/key", {some: 'data'})

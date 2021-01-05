@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.3.0
+
+- adds db_host for realtime database to enable different hosting locations
+
 ### 1.2.0
 
 - adds `Firefighter::Identitytoolkit#verify_password`

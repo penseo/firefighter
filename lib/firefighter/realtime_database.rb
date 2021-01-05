@@ -6,7 +6,7 @@ module Firefighter
       new(
         db_name: ENV['FIREBASE_WEB_DB_NAME'],
         db_secret: ENV['FIREBASE_WEB_DB_SECRET'],
-        db_host: ENV['FIREBASE_WEB_DB_NAME'] || DEFAULT_DB_HOST,
+        db_host: ENV['FIREBASE_WEB_DB_HOST'] || DEFAULT_DB_HOST,
       )
     end
 
